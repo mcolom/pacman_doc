@@ -1,22 +1,36 @@
 
-# pacman_doc
+# Pacman hardware documentation
 
-<p align="center"><img src="images/cabinet.jpg" alt="drawing" width="400" alt="Pacman arcade cabinet"/></p>
+<p align="center"><img src="images/cabinet.jpg" width="400" alt="Pacman arcade cabinet"/></p>
 
-A description of the Pacman arcade game's hardware
-
-
+A description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
 
 
-dsflgñkdflñgk
+# Power
 
-## sdfsdfsdf
-wwww
+Pacman takes several AC and DC input voltages at the edge corrector: 5 DC, 7.5 VCD, 7 VAC, 7 VCT, 12 VAC, and 12 VCT.
 
-### sdfsdfs
-fffff
+The notation in the schematic refers to:
+
+* VDC: voltage direct current (DC)
+* VAC: voltage alternating current (AC)
+* VCT: the central tap of the transformer, usually used as a ground reference
+
+<p align="center"><img src="images/power/power.png" width="600" alt="Power part of the schematic"/></p>
+
+The 5 V DC voltage is taken directly from the edge connector pin 18, and it's used to power most of the TTL chips in the board. Capacitor C2 filters out low frequencies and capacitor CP1-25 the high-frequencies.
+
+Pins C, 3, D, and 4 take 7 VAC, which is rectified with diodes D7 and D8 to obtain a positive (but semi-sinusoidal) signal, which charges capacitors C7 and C8 to obtain 7 V DC. On pins E and 5, it can receive directly 7.5 V DC. In the schematic both the generated 7 V DC and the 7.5 V DC input are connected together, suggesting the board can choose between a DC or AC input, as an option.
+
+Pins 1, B, and 2 are the center tap of the transformer, referenced to ground. Pins 21, Z, and 22 are 12 VCT, also referenced to ground.
+
+Pins W, 19, X, and 20 take 12 V AC as input. This signal is rectified with diodes D3 and D4, and stabilied with capacitor C29. The schematic indicates that after the diodes there'a 16 VCD voltage, although if the input voltage is 12 V AC, one would expect about 12 - 0.6 = 11.4 V DC, not 16 VDC. In any case, this is not importante since this tension is to power up the audio amplified at 11A, but it can work within voltages between 6 and 24 V. These 16 or 12 VDC are the input of the IR1 chip (78GU1C), a voltage regulator.
+
+IR1 is designed to output 5V DC at its output sense pin 1. It increases or decreases the current through BJT D44VM4 with its output pin 2. The role of resistor R53 is to share the load's current with the BJT,  [probably to avoid requiring a larger heatsink](https://electronics.stackexchange.com/questions/458315/can-someone-explain-the-purpose-of-r53-in-this-old-linear-power-supply-circuit). The zener diode D9 is a protection to limit to 6.2 V the voltage in the 5 V rail.
+
+### Another topic...
+Another topic...
 
 # Docs
-Links to docs
-
+Add here links to any relevant docs...
 
