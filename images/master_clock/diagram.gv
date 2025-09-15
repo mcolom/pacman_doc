@@ -1,0 +1,19 @@
+// dot diagram.gv -Tsvg > diagram.svg
+
+digraph master_clock {
+	rankdir=LR;
+	node [shape=circle];
+	
+	 00[label="0,0"];
+     01[label="0,1"];
+     10[label="1,0"];
+     11[label="1,1"];
+	 
+
+     // Connections
+    00->10;
+    01->00;
+    10->01;
+    11->00;
+}
+
