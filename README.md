@@ -5,6 +5,9 @@
 
 A description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
 
+# Functional diagram
+
+<p align="center"><img src="images/diagrams/functional.svg" alt="Pacman functional diagram"/></p>
 
 # Power
 
@@ -16,7 +19,7 @@ The notation in the schematic refers to:
 * VAC: voltage alternating current (AC)
 * VCT: the central tap of the transformer, usually used as a ground reference
 
-<p align="center"><img src="images/power/power.png" width="600" alt="Power part of the schematic"/></p>
+<p align="center"><img src="images/power/power.png" alt="Power part of the schematic"/></p>
 
 The 5 V DC voltage is taken directly from the edge connector pin 18, and it's used to power most of the TTL chips in the board. Capacitor C2 filters out low frequencies and capacitor CP1-25 the high-frequencies.
 

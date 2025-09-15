@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1005.5983"
+   height="884.70465"
+   viewBox="0 0 1005.5984 884.70465"
+   version="1.1"
+   id="svg81"
+   sodipodi:docname="functional.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview81"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.91531044"
+     inkscape:cx="-6.0088902"
+     inkscape:cy="528.23608"
+     inkscape:window-width="2560"
+     inkscape:window-height="1374"
+     inkscape:window-x="0"
+     inkscape:window-y="29"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg81"
+     inkscape:clip-to-page="true" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .title { font: 700 28px/1.2 system-ui, -apple-system, Segoe UI, Roboto, &quot;Helvetica Neue&quot;, Arial; fill: #111; }
+      .subtitle { font: 600 16px/1.3 system-ui, -apple-system, Segoe UI, Roboto, &quot;Helvetica Neue&quot;, Arial; fill: #333; }
+      .label { font: 600 14px/1.3 system-ui, -apple-system, Segoe UI, Roboto, &quot;Helvetica Neue&quot;, Arial; fill: #111; }
+      .small { font: 12px/1.3 system-ui, -apple-system, Segoe UI, Roboto, &quot;Helvetica Neue&quot;, Arial; fill: #333; }
+      .bus { stroke: #333; stroke-width: 2.5; marker-end: url(#arrow); }
+      .sig { stroke: #666; stroke-width: 2; marker-end: url(#arrow); }
+      .wire { stroke: #888; stroke-width: 1.5; marker-end: url(#arrow); }
+      .box { fill: #fff; stroke: #333; stroke-width: 2.2; rx: 10; }
+      .group { fill: #f6f8fa; stroke: #c7d0d9; stroke-width: 2; rx: 16; }
+      .note { fill: #fff7e6; stroke: #f1c27d; stroke-width: 2; rx: 8; }
+      .port { fill: #eef7ff; stroke: #9ec5ff; stroke-width: 2; rx: 8; }
+      .power { fill: #fff0f0; stroke: #f5a3a3; stroke-width: 2; rx: 8; }
+      .edge { fill: #f2fff2; stroke: #91d391; stroke-width: 2; rx: 8; }
+      .pinlabel { font: 600 12px system-ui, -apple-system, Segoe UI, Roboto, &quot;Helvetica Neue&quot;, Arial; fill: #444; }
+    </style>
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerUnits="strokeWidth"
+       markerWidth="10"
+       markerHeight="10"
+       orient="auto">
+      <path
+         d="M 0,0 10,5 0,10 Z"
+         fill="#333333"
+         id="path1" />
+    </marker>
+  </defs>
+  <!-- Title -->
+  <text
+     x="213.71153"
+     y="65.480408"
+     class="title"
+     id="text1"
+     style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:28px;line-height:1.2;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Pac-Man Arcade PCB — Functional Block Diagram</text>
+  <text
+     x="213.71153"
+     y="91.480408"
+     class="subtitle"
+     id="text2"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:16px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">High-level data flow and major subsystems (CPU, memory, video, audio, I/O, power)</text>
+  <!-- Edge connector / Cabinet I/O -->
+  <rect
+     x="34.020123"
+     y="122.54012"
+     width="281.14038"
+     height="132.47086"
+     class="edge"
+     id="rect2" />
+  <text
+     x="54.590313"
+     y="153.11031"
+     class="label"
+     id="text3"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Edge Connector / Cabinet</text>
+  <text
+     x="54.590313"
+     y="178.11031"
+     class="small"
+     id="text4"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">• Controls: Joystick, Start, Coin, Service</text>
+  <text
+     x="54.590313"
+     y="198.11031"
+     class="small"
+     id="text5"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">• Video Out: RGB analog + Sync</text>
+  <text
+     x="54.590313"
+     y="218.11031"
+     class="small"
+     id="text6"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">• Audio Out: Speaker</text>
+  <text
+     x="54.590313"
+     y="238.11031"
+     class="small"
+     id="text7"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">• Power In: +5 V, +12 V, GND</text>
+  <!-- Power & Reset -->
+  <rect
+     x="346.94266"
+     y="123.27758"
+     width="185.06438"
+     height="129.95708"
+     class="power"
+     id="rect7" />
+  <text
+     x="361.94266"
+     y="153.27757"
+     class="label"
+     id="text8"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Power, Reset &amp; Clocks</text>
+  <text
+     x="361.94266"
+     y="178.27757"
+     class="small"
+     id="text9"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">6.144 MHz crystal → dividers</text>
+  <text
+     x="361.94266"
+     y="198.27757"
+     class="small"
+     id="text10"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Z80 clock ≈ 3.072 MHz</text>
+  <text
+     x="361.94266"
+     y="218.27757"
+     class="small"
+     id="text11"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Watchdog, POR reset</text>
+  <!-- CPU & Core Memory cluster -->
+  <rect
+     x="14.761943"
+     y="280"
+     width="540"
+     height="420"
+     class="group"
+     id="rect11" />
+  <text
+     x="29.761942"
+     y="305"
+     class="label"
+     id="text12"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">CPU &amp; Code memory</text>
+  <!-- CPU -->
+  <rect
+     x="44.761944"
+     y="330"
+     width="180"
+     height="120"
+     class="box"
+     id="rect12" />
+  <text
+     x="54.761944"
+     y="355"
+     class="label"
+     id="text13"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">CPU</text>
+  <text
+     x="54.761944"
+     y="375"
+     class="small"
+     id="text14"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Zilog Z80 (8-bit)</text>
+  <text
+     x="54.761944"
+     y="395"
+     class="small"
+     id="text15"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">A[15:0], D[7:0]</text>
+  <text
+     x="54.761944"
+     y="415"
+     class="small"
+     id="text16"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">I/O ports, interrupts</text>
+  <!-- Address Decoder -->
+  <rect
+     x="244.76195"
+     y="330"
+     width="150"
+     height="120"
+     class="box"
+     id="rect16" />
+  <text
+     x="254.76195"
+     y="355"
+     class="label"
+     id="text17"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Address Decoder</text>
+  <text
+     x="254.76195"
+     y="380"
+     class="small"
+     id="text18"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial"><tspan
+       sodipodi:role="line"
+       id="tspan81"
+       x="254.76195"
+       y="380">Memory map</tspan><tspan
+       sodipodi:role="line"
+       x="254.76195"
+       y="395.60001"
+       id="tspan83">Chip selects</tspan></text>
+  <text
+     x="255.53447"
+     y="410.81546"
+     class="small"
+     id="text19"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">I/O decoding</text>
+  <!-- Program ROMs -->
+  <rect
+     x="414.76193"
+     y="330"
+     width="120"
+     height="120"
+     class="box"
+     id="rect19" />
+  <text
+     x="424.76193"
+     y="355"
+     class="label"
+     id="text20"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Program ROMs</text>
+  <text
+     x="424.3757"
+     y="376.3248"
+     class="small"
+     id="text21"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Game code</text>
+  <!-- Work RAM -->
+  <rect
+     x="414.76193"
+     y="470"
+     width="120"
+     height="100"
+     class="box"
+     id="rect22" />
+  <text
+     x="424.76193"
+     y="495"
+     class="label"
+     id="text23"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Work RAM</text>
+  <!-- I/O Ports / Latches -->
+  <rect
+     x="244.76195"
+     y="470"
+     width="150"
+     height="100"
+     class="box"
+     id="rect24" />
+  <text
+     x="254.76195"
+     y="495"
+     class="label"
+     id="text25"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">I/O Ports &amp; Latches</text>
+  <text
+     x="254.76195"
+     y="526.95282"
+     class="small"
+     id="text26"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Inputs, DIP switches</text>
+  <!-- Buses -->
+  <!-- Decoder to ROM/RAM/I/O -->
+  <text
+     x="254.53874"
+     y="514.63519"
+     class="small"
+     id="text32"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">/CS RAM</text>
+  <text
+     x="254.66753"
+     y="541.93134"
+     class="small"
+     id="text38"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">I/O selects</text>
+  <!-- Video Subsystem -->
+  <rect
+     x="597.11774"
+     y="123.03859"
+     width="400"
+     height="580"
+     class="group"
+     id="rect38" />
+  <text
+     x="612.11774"
+     y="148.03859"
+     class="label"
+     id="text39"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Video Subsystem</text>
+  <text
+     x="612.11774"
+     y="168.03859"
+     class="small"
+     id="text40"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Tile &amp; Sprite rendering, timing, palette</text>
+  <!-- CRT Timing -->
+  <rect
+     x="617.11774"
+     y="183.03859"
+     width="160"
+     height="100"
+     class="box"
+     id="rect40" />
+  <text
+     x="627.11774"
+     y="208.03859"
+     class="label"
+     id="text41"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">CRT Timing</text>
+  <text
+     x="627.11774"
+     y="233.03859"
+     class="small"
+     id="text42"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">HSYNC/VSYNC</text>
+  <text
+     x="627.11774"
+     y="253.03859"
+     class="small"
+     id="text43"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Pixel clock</text>
+  <!-- Character ROM -->
+  <rect
+     x="787.11768"
+     y="183.03859"
+     width="190"
+     height="80"
+     class="box"
+     id="rect43" />
+  <text
+     x="797.11768"
+     y="208.03859"
+     class="label"
+     id="text44"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Character (Tile) ROM</text>
+  <text
+     x="797.11768"
+     y="233.03859"
+     class="small"
+     id="text45"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">8×8 glyph bitmaps</text>
+  <!-- Tilemap (Video RAM) -->
+  <rect
+     x="617.11774"
+     y="303.03857"
+     width="170"
+     height="110"
+     class="box"
+     id="rect45" />
+  <text
+     x="627.11774"
+     y="328.03857"
+     class="label"
+     id="text46"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Tilemap RAM</text>
+  <text
+     x="627.11774"
+     y="353.03857"
+     class="small"
+     id="text47"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Screen map + color attrs</text>
+  <!-- Sprite / Object RAM -->
+  <rect
+     x="792.11768"
+     y="303.03857"
+     width="185"
+     height="110"
+     class="box"
+     id="rect47" />
+  <text
+     x="802.11768"
+     y="328.03857"
+     class="label"
+     id="text48"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Sprite (object) RAM</text>
+  <text
+     x="802.11768"
+     y="353.03857"
+     class="small"
+     id="text49"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">X/Y, index, color</text>
+  <!-- Color PROMs -->
+  <rect
+     x="617.11774"
+     y="433.03857"
+     width="170"
+     height="90"
+     class="box"
+     id="rect49" />
+  <text
+     x="627.11774"
+     y="458.03857"
+     class="label"
+     id="text50"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Color PROMs</text>
+  <text
+     x="627.11774"
+     y="486.86243"
+     class="small"
+     id="text51"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Palette &amp; lookup</text>
+  <!-- Pixel Combiner -->
+  <rect
+     x="792.11768"
+     y="433.03857"
+     width="185"
+     height="90"
+     class="box"
+     id="rect51" />
+  <text
+     x="802.11768"
+     y="458.03857"
+     class="label"
+     id="text52"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Pixel Combiner</text>
+  <text
+     x="802.11768"
+     y="483.03857"
+     class="small"
+     id="text53"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Tile/Sprite priority, mux</text>
+  <!-- DAC & Video Out -->
+  <rect
+     x="617.11774"
+     y="543.03857"
+     width="360"
+     height="100"
+     class="box"
+     id="rect53" />
+  <text
+     x="627.11774"
+     y="568.03857"
+     class="label"
+     id="text54"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Resistor DAC &amp; Output Stage</text>
+  <text
+     x="627.11774"
+     y="593.03857"
+     class="small"
+     id="text55"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">R, G, B analog + Sync → Monitor</text>
+  <!-- Video buses/arrows -->
+  <text
+     x="343.98941"
+     y="315.62231"
+     class="small"
+     id="text56"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">CPU writes tilemap</text>
+  <text
+     x="626.86157"
+     y="472.1311"
+     class="small"
+     id="text60"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Color mapping</text>
+  <text
+     x="895.11768"
+     y="535.03857"
+     class="small"
+     id="text61"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Pixels</text>
+  <!-- Video to Edge -->
+  <!-- Audio Subsystem -->
+  <rect
+     x="259.48764"
+     y="721.09253"
+     width="540"
+     height="150"
+     class="group"
+     id="rect62" />
+  <text
+     x="274.48764"
+     y="746.09253"
+     class="label"
+     id="text63"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Audio Subsystem</text>
+  <!-- Sound control -->
+  <rect
+     x="279.48764"
+     y="761.09253"
+     width="180"
+     height="80"
+     class="box"
+     id="rect63" />
+  <text
+     x="289.48764"
+     y="786.09253"
+     class="label"
+     id="text64"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Sound Control Latches</text>
+  <text
+     x="289.48764"
+     y="811.09253"
+     class="small"
+     id="text65"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">CPU I/O to analog</text>
+  <!-- Analog sound gen -->
+  <rect
+     x="479.48764"
+     y="761.09253"
+     width="160"
+     height="80"
+     class="box"
+     id="rect65" />
+  <text
+     x="489.48764"
+     y="786.09253"
+     class="label"
+     id="text66"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Analog Sound Gen</text>
+  <text
+     x="489.48764"
+     y="811.09253"
+     class="small"
+     id="text67"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Tones, noise, envelopes</text>
+  <!-- Amp -->
+  <rect
+     x="659.48767"
+     y="761.09253"
+     width="120"
+     height="80"
+     class="box"
+     id="rect67" />
+  <text
+     x="669.48767"
+     y="786.09253"
+     class="label"
+     id="text68"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:14px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Audio Amp</text>
+  <text
+     x="669.48767"
+     y="811.09253"
+     class="small"
+     id="text69"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Speaker</text>
+  <!-- Audio arrows -->
+  <!-- Inputs from Edge to I/O -->
+  <text
+     x="363.65939"
+     y="238.59946"
+     class="small"
+     id="text73"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:1.3;font-family:system-ui, '-apple-system', 'Segoe UI', Roboto, 'Helvetica Neue', Arial">Controls &amp; Coins</text>
+  <!-- Power distribution to clusters -->
+  <!-- Notes -->
+  <!-- Legend -->
+  <rect
+     x="-305.23807"
+     y="60"
+     width="0"
+     height="0"
+     fill="none"
+     stroke="none"
+     id="rect81" />
+</svg>
