@@ -53,7 +53,7 @@ A good way to analyze this circuit is to consider its current state (QA, QB) and
 |1|0|1|1|0|1|
 |1|1|0|1|0|0|
 
-As as directed graph:
+And as directed graph:
 
 <p align="center"><img src="images/master_clock/diagram.svg" alt="Master clock divider states"/></p>
 
@@ -67,6 +67,25 @@ The oscillator produces a square signal of 18.432 MHz, and therefore the master 
 # Some references
 Here you are some references to pages and documents with relevant information.
 
-[probably to avoid requiring a larger heatsink](https://classicgaming.cc/classics/pac-man/tech-dip-switch-settings)
+* [Pac-man trouble shooting logic board, part I](https://www.arcade-museum.com/manuals-videogames/P/Pacman-Troubleshooting-Guide-Part1.pdf)
+
+* [Pacman and Ms Pacman Trouble Shooting Guide Part 2](https://www.arcade-museum.com/manuals-videogames/P/Pacman-Mspacman-Troubleshooting-Guide-Part2.pdf)
+ 
+* [Pac-man Repair & Troubleshooting Guide](https://lawnmowerman.rotheblog.com)
+
+* [Pac-Man Dip Switch Settings | Settings for The Pac-Man Arcade](https://classicgaming.cc/classics/pac-man/tech-dip-switch-settings)
+
+* [Pac-man board problems and fixes](https://www.mikesarcade.com/arcade/pacfix.html)
+
+* [Troubleshoot your Pacman / Ms Pacman board by picture.
+103 photos of problems and solutions.](https://www.mikesarcade.com/arcade/pactrouble.html)
+
+* [Pacman hardware](https://walkofmind.com/programming/pie/hardware.htm)
+
+* [Pac-Man Memory Layout | Settings for The Pac-Man Arcade](https://classicgaming.cc/classics/pac-man/tech-memory-layout)
+
+* [PacMan Memory-Map](www.euro-arcade.de/files/pacman_mm/pacman_mm.htm)
+
+
 
 
