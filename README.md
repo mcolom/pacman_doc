@@ -3,7 +3,12 @@
 
 <p align="center"><img src="images/cabinet.jpg" width="400" alt="Pacman arcade cabinet"/></p>
 
-A description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
+This documnent is a description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
+Although much information about the software do exist, as far as I know there isn't a comprehensive guide to explain how its hardware works in detail.
+
+Pacman (or Pac Man, Pac-man, パックマン, Pakku Man, Puckman, ...)  is certainly one of the most iconic videogames in history, and thus it deserves to be well documented and understood in detail.
+
+I'm completing this guide in my spare time, but please make a Pull Request in Github if you'd like to contribute!
 
 # Functional diagram
 
@@ -59,10 +64,9 @@ The output is thus 0, 0, 1, and therefore the input frequency is divided by thre
 The oscillator produces a square signal of 18.432 MHz, and therefore the master clock ends up with a frequency of 6.144 MHz. In the schematic it's approximated as 6 Mhz.
 
 
+# Some references
+Here you are some references to pages and documents with relevant information.
 
-### Another topic...
-Another topic...
+[probably to avoid requiring a larger heatsink](https://classicgaming.cc/classics/pac-man/tech-dip-switch-settings)
 
-# Docs
-Add here links to any relevant docs...
 
