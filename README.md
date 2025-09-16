@@ -82,29 +82,12 @@ Then the counter at 3S goes on with the counting, fed by the carry bit of 3R, an
 Two important signals for the video generation are obtained from the frequency divisions: the horizontal blanking (H BLANK), the vertical blanking (V BLANK), and the composite sync (CMPSYNC).
 
 The H BLANK is generated using the D flip flop at 3N. It's clocked with 16H, set when 32H=64H=H, and reset when 256=H (it counts from 0 to 127).
-Each signal iH activates with period 2*i/6 = i/3 us. Thus, the combination H64=H32=H happens with period 64/3 + 32/3 = 32 us.
+Each signal iH activates with period 2*i/6 = i/3 us. Thus, the combination H64=H32=H happens with period 64/3 + 32/3 = 32 us. TODO: REVIEW THIS, SINCE IT SHOULD GIVE HALF OF THIS, 16 us!
 
+<!---
 However, this signal is sampled with 16H (clock input of the D flip flop), which is goes at half the speed of 32H), and therefore H BLANK takes twice the time, 2*32 = 64 us.
+-->
 
-
-
-
-
-
-256H
-128H
-* 64H
-* 32H
-16H
-8H
-4H
-2H
-1H
-
-
-
-
-ToDo...
 
 
 # Some references
