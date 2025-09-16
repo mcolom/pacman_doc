@@ -72,8 +72,8 @@ The 6 MHz clock signal is decomposed in a series of horizonal (H) and vertical (
 
 The 6 MHz clock signal is fed into the D flip flop at 8C, which has its output connected to its input. Therefore, it halves the input frequency, producing the first 1H output. The rest of divisions are obtained with the binary counters 3R and 3S.
 
-Each Hi can be understood as dividing the master clock i times, producing a frequency of (6 / (2*i)) = 3/i MHz. The 3R flip flop is fed with 1H, and it produces 2H (1.5 MHz), 4H (750 KHz), 8H (375 KHz), 16H (187.5 KHz).
-Then the counter at 3S goes on with the counting, fed by the carry bit of 3R, and produces 32H (93.8 KHz), 64H (46.9 KHz), 128H (23.4 KHz), and 256H (11.7 KHz).
+To simplify the notation, let's consider that our working clock is half of the master clock, that is 3 MHz.
+Then, the notation iH means dividing the frequency of the working clock by i. 1H is dividing by 1, so it's 3 MHz, 2H is 1.5 MHz, 4H is 0.75 MHz, and so on. The counter at 3S, fed by the carry bit of 3R, produces 32H (93.8 KHz), 64H (46.9 KHz), 128H (23.4 KHz), and 256H (11.7 KHz). 1H is one cycle of the working clock.
 
 ## Horizontal and vertical sync
 
@@ -81,16 +81,9 @@ Then the counter at 3S goes on with the counting, fed by the carry bit of 3R, an
 
 Two important signals for the video generation are obtained from the frequency divisions: the horizontal blanking (H BLANK), the vertical blanking (V BLANK), and the composite sync (CMPSYNC).
 
-The H BLANK is generated using the D flip flop at 3N.
+H BLANK is generated using the D flip flop at 3N. Its D input is H whenever H64=L or H32=L. This takes 64+32=96 cycles of the working clock. Given that each cycle takes 1/3 us, the H BLANK cycle will be 96/3 = 32 us. Since we're only interested in half of the cycle (the time it stays H), finally we have that H BLANK is 32/2 = 16 us, aprox. If we'd need to exact timing, we should consider the exact frequency of the master clock: 96 / (18.432 / 3) = 15.625 us.
 
-Each signal iH activates and deactivates (a complete cycle from L to H levels) with period 2*i/6 = i/3 us.
-Thus, the combination H64=H32=H happens with period 64/3 + 32/3 = 32 us. Again, note that this a complete cycle from L to H, so the time it remains activated is half of this, 16 us approx.
-
-To compute the exact time of H BLANK, we should consider the exact frequency of the master click, and we would obtain that (64/3.071 + 32/3.071)/2 = 15.63009 us.
-
-
-
-
+V BLANK is obtained in a similar way: **TODO**
 
 
 # Some references
