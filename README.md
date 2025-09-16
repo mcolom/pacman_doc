@@ -72,10 +72,38 @@ The 6 MHz clock signal is decomposed in a series of horizonal (H) and vertical (
 
 The 6 MHz clock signal is fed into the D flip flop at 8C, which has its output connected to its input. Therefore, it halves the input frequency, producing the first 1H output. The rest of divisions are obtained with the binary counters 3R and 3S.
 
-Each Hi has a frequency of (6 / i) MHz. 3R is fed with 1H, and it produces 2H (3 MHz), 4H (1.5 1MHz), 8H (750 KHz) and 16H (375 KHz).
-Then the counter at 3S keeps counting, fed by the carry bit of 3R, and produces 32H (187.5 KHz), 64H (93.8 KHz), 128H (46.9 KHz), and 256H (23.4 KHz).
+Each Hi can be understood as dividing the master clock i times, producing a frequency of (6 / (2*i)) = 3/i MHz. The 3R flip flop is fed with 1H, and it produces 2H (1.5 MHz), 4H (750 KHz), 8H (375 KHz), 16H (187.5 KHz).
+Then the counter at 3S goes on with the counting, fed by the carry bit of 3R, and produces 32H (93.8 KHz), 64H (46.9 KHz), 128H (23.4 KHz), and 256H (11.7 KHz).
 
 ## Horizontal and vertical sync
+
+<p align="center"><img src="images/master_clock/syncs.png" alt="Master clock divisions"/></p>
+
+Two important signals for the video generation are obtained from the frequency divisions: the horizontal blanking (H BLANK), the vertical blanking (V BLANK), and the composite sync (CMPSYNC).
+
+The H BLANK is generated using the D flip flop at 3N. It's clocked with 16H, set when 32H=64H=H, and reset when 256=H (it counts from 0 to 127).
+Each signal iH activates with period 2*i/6 = i/3 us. Thus, the combination H64=H32=H happens with period 64/3 + 32/3 = 32 us.
+
+However, this signal is sampled with 16H (clock input of the D flip flop), which is goes at half the speed of 32H), and therefore H BLANK takes twice the time, 2*32 = 64 us.
+
+
+
+
+
+
+256H
+128H
+* 64H
+* 32H
+16H
+8H
+4H
+2H
+1H
+
+
+
+
 ToDo...
 
 
