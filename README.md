@@ -4,7 +4,7 @@
 <p align="center"><img src="images/cabinet.jpg" width="400" alt="Pacman arcade cabinet"/></p>
 
 This documnent is a description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
-Although much information about the software do exist, as far as I know there isn't a comprehensive guide to explain how its hardware works in detail. You can [get the full schematic here](asssets/pacman_logic_board_b_schematic.jpg), thanks to user GaryMcT from the forum at [Arcade Museum](arcade-museum.com).
+Although much information about the software do exist, as far as I know there isn't a comprehensive guide to explain how its hardware works in detail. You can [get the full schematic here](assets/pacman_logic_board_b_schematic.jpg), thanks to user GaryMcT from the forum at [Arcade Museum](arcade-museum.com).
 
 Pacman (or Pac Man, Pac-man, パックマン, Pakku Man, Puckman, ...)  is certainly one of the most iconic videogames in history, and thus it deserves to be well documented and understood in detail.
 
