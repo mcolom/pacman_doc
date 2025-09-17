@@ -212,6 +212,9 @@ The actual addresses and contents of each ROM are given in the following table.
 
 The sprite attributes area has 8 entries, which are the X, Y, tile, color, and flip attributes of the sprite.
 
+The movement of data from and to the bus it mediated by the transceiver at 4H. 
+<p align="center"><img src="images/VRAM/transceiver.png" alt="VRAM transceiver"/></p>
+The R/W signal controls the direction (read from the VRAM to the bus, or write to the VRAM from the bus). It's activated according to the /VRAM signal.
 
 
 # Some references
