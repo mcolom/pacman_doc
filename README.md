@@ -208,7 +208,7 @@ The actual addresses and contents of each ROM are given in the following table.
 |4400-47FF|4N|Tile color|
 |4800-4FBF|4R, 4S|Z80 scratchpad|
 |4FC0-4FEF|4R, 4S|Z80 stack|
-|4FF0-4FFF|4R, 4S|Sprite attributes|
+|4FF0-4FFF|4K|Sprite attributes|
 
 The sprite attributes area has 8 entries, which are the X, Y, tile, color, and flip attributes of the sprite.
 
