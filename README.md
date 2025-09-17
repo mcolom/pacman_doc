@@ -200,6 +200,19 @@ Therefore, the first VRAM address is 0100000000000000 = 0x4000...
 |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |0|1|0|0|1|1|1|1|1|1|1|1|1|1|1|1|
 
+The actual addresses and contents of each ROM are given in the following table.
+
+|Address range|IC|Function|
+|-|-|-|
+|4000-43FF|4P|Tile number|
+|4400-47FF|4N|Tile color|
+|4800-4FBF|4R, 4S|Z80 scratchpad|
+|4FC0-4FEF|4R, 4S|Z80 stack|
+|4FF0-4FFF|4R, 4S|Sprite attributes|
+
+The sprite attributes area has 8 entries, which are the X, Y, tile, color, and flip attributes of the sprite.
+
+
 
 # Some references
 Here you are some references to pages and documents with relevant information.
