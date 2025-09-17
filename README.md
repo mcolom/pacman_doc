@@ -55,7 +55,7 @@ A good way to analyze this circuit is to consider its current state (QA, QB) and
 |1|0|1|1|0|1|
 |1|1|0|1|0|0|
 
-And as directed graph:
+And as a directed graph:
 
 <p align="center"><img src="images/master_clock/diagram.svg" alt="Master clock divider states"/></p>
 
@@ -81,9 +81,90 @@ Then, the notation iH means dividing the frequency of the working clock by i. 1H
 
 Two important signals for the video generation are obtained from the frequency divisions: the horizontal blanking (H BLANK), the vertical blanking (V BLANK), and the composite sync (CMPSYNC).
 
-H BLANK is generated using the D flip flop at 3N. Its D input is H whenever H64=L or H32=L. This takes 64+32=96 cycles of the working clock. Given that each cycle takes 1/3 us, the H BLANK cycle will be 96/3 = 32 us. Since we're only interested in half of the cycle (the time it stays H), finally we have that H BLANK is 32/2 = 16 us, aprox. If we'd need to exact timing, we should consider the exact frequency of the master clock: 96 / (18.432 / 3) = 15.625 us.
+H BLANK is generated using the D flip flop at 3N. Its D input is H whenever H64=L or H32=L. This takes 64+32=96 cycles of the working clock, after 256H activates. Given that each cycle takes 1/3 us, the H BLANK cycle will be 96/3 = 32 us. Since we're only interested in half of the cycle (the time it stays H), finally we have that H BLANK is 32/2 = 16 us, aprox. If we'd need to exact timing, we should consider the exact frequency of the master clock: 96 / (18.432 / 3) = 15.625 us.
 
-V BLANK is obtained in a similar way: **TODO**
+
+**[ToDo]: document also V BLANK, CMPSYNC, V SYNC, AND H SYNC.**
+
+
+<!--
+To obtain H SYNC, 64H is sampled at 16H with flip flip D at 3N. Thus, it'll take 64 cycles to activate (10.42 us), and it'll be active for 16 cycles (2.60 us).
+
+The vertical divisions work the same way as the horizontals. The clock of 5M is fed with H SYNC (64H). V SYNC is obtained by dividing H SYNC by 256, giving total of 64*256 = 16384 H1 cycles = 16384 / 3 us = 5461.33 us.
+
+
+H BLANK 96 H1 cycles (PRE)
+D 64H is 63/3 us = 21.33 us ; * 256 = 5461.33 us = 183 Hz
+
+H SYNC
+Dura a H 16H  gives  5.33 us
+Entrada a 64H gives 21.33 us = 42.86 KHz (OK)
+
+64H * 256 = 16384 us gives 61.035 Hz
+
+In [47]: 1/16384e-6
+Out[47]: 61.03515625
+
+
+In [8]: (1/5461.33e-6) /3
+Out[8]: 61.03519350292572
+
+In [45]: (1/(64*256e-6))
+Out[45]: 61.03515625
+
+
+
+5.33 us * 256 = 1364.48 us = 0.00074 MHz = 0.73 Khz = 732.8799249530957 Hz
+
+https://forums.arcade-museum.com/threads/what-do-pac-man-sync-signals-look-like.545345/
+
+Hsync is 6MHz / (256+128) = 15625kHz
+HBlank pulse width = 96 / 6MHz = 16us, starting 16 / 6MHz = 2.67us after 256H goes high.
+HSync pulse width = 32 / 6MHz = 5.33us at the end of HBlank
+
+etc...
+
+
+=================
+
+entrada = (64/3)*1e-6
+entrada_mult = entrada * 16
+
+-->
+
+## Watchdog timer
+To prevent that the game gets accidentally frozen because of any potential bugs, Pacman has a watchdog timer that resets the system is the code is not constantly writing to the address 0x50C0.
+
+The reset signal originates at the counter 9C, clocked with VBLANK.
+
+When it reaches value 15, it will activate TC, which will produce the RESET signal. This can be prevented if the counter is cleared
+
+<p align="center"><img src="images/watchdog/watchdog_9C.png" alt="Watchdog counter"/></p>
+
+The asynchronous clear for the counter comes from signal /WDR of decoder 7J. /WDR activates when R/W=L (a write) and AB7=AB6=H.
+Also, to be active the decoder needs G1=A12=H, as well a signal G2 from the custom IC 6D.
+
+<p align="center"><img src="images/watchdog/watchdog_7J.png" alt="Watchdog MUX"/></p>
+
+So far, this gives this address:
+
+
+|AB15|AB14|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|.|.|.|1|.|.|.|.|1|1|.|.|.|.|.|.|
+
+However, we know that the watchdog address is 0x50C0, which is
+
+|AB15|AB14|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|1|0|1|0|0|0|0|1|1|0|0|0|0|0|0|
+
+This means that we also need that AB14 is active. This address line goes to decoder 7M, which takes get enabled with /MREQ and selects with (AB14, /RFSH). The output activates low when AB14=/RFSH=H. To make things a little bit complicated, its output goes to custom IC 286 at its pin 27. We can assume for the moment that this custom IC will check AB14 and control the activation of 7J with G2.
+
+<p align="center"><img src="images/watchdog/watchdog_7M.png" alt="Watchdog decoder 7M "/></p>
+
+To summarize, any write to memory address x1x1xxxx11xxxxxx (including 0101000011000000 = 0x50C0) will be noticed by the watchdog and prevent the machine from resetting.
+
 
 
 # Some references
