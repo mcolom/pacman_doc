@@ -133,7 +133,7 @@ entrada_mult = entrada * 16
 -->
 
 ## Watchdog timer
-To prevent that the game gets accidentally frozen because of any potential bugs, Pacman has a watchdog timer that resets the system is the code is not constantly writing to the address 0x50C0.
+To prevent that the game gets accidentally frozen because of any potential bugs, Pacman has a watchdog timer that resets the system if the code is not constantly writing to the address 0x50C0.
 
 The reset signal originates at the counter 9C, clocked with VBLANK.
 
