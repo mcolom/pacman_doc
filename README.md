@@ -253,11 +253,9 @@ The ROMs on the top of the schematic contain the main Z80 code of the game, in t
 |-|-|
 |6K|Z80 code, 0x0000–0x07FF|
 |6E|Z80 code, 0x0800–0x0FFF|
-
 |||
 |6M|Z80 code, 0x1000–0x17FF|
 |6F|Z80 code, 0x1800–0x1FFF|
-
 |||
 |6N|Z80 code, 0x2000–0x27FF|
 |6H|Z80 code, 0x2800–0x2FFF|
