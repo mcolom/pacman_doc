@@ -251,17 +251,20 @@ The ROMs on the top of the schematic contain the main Z80 code of the game, in t
 
 |Position|Function|
 |-|-|
-|6E|Z80 code, 0x0000–0x0FFF|
-|6K|Z80 code, 0x0000–0x0FFF|
+|6K|Z80 code, 0x0000–0x07FF|
+|6E|Z80 code, 0x0800–0x0FFF|
+
 |||
-|6F|Z80 code, 0x1000–0x1FFF|
-|6M|Z80 code, 0x1000–0x1FFF|
+|6M|Z80 code, 0x1000–0x17FF|
+|6F|Z80 code, 0x1800–0x1FFF|
+
 |||
-|6H|Z80 code, 0x2000–0x2FFF|
-|6N|Z80 code, 0x2000–0x2FFF|
+|6N|Z80 code, 0x2000–0x27FF|
+|6H|Z80 code, 0x2800–0x2FFF|
 |||
-|6J|Z80 code, 0x3000–0x3FFF|
-|6P|Z80 code, 0x3000–0x3FFF|
+|6P|Z80 code, 0x3000–0x37FF|
+|6J|Z80 code, 0x3800–0x3FFF|
+
 
 The board can admits 4 Kb 2732 ROMs at 6E, 6F, 6H and 6J, or divide each 2716 into two 2 Kb 2716 chips.
 
@@ -317,7 +320,7 @@ From 0x3000 to 0x3FFF.
 
 And as expected, the ROMs only activate when the CPU is _reading_ their addresses, with /RD=0.
 
-Finally, custom chip 6D takes care of putting their output data in the data bus (DB7, ..., DB0).
+Finally, custom chip 6D takes care of putting their output data into the data bus (DB7, ..., DB0).
 
 
 
