@@ -3,10 +3,10 @@
 
 <p align="center"><img src="images/cabinet.jpg" width="400" alt="Pacman arcade cabinet"/></p>
 
-This documnent is a description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
+This document is a description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
 Although much information about the software do exist, as far as I know there isn't a comprehensive guide to explain how its hardware works in detail. You can [get the full schematic here](assets/pacman_logic_board_b_schematic.jpg), thanks to user GaryMcT from the forum at [Arcade Museum](arcade-museum.com).
 
-Pacman (or Pac Man, Pac-man, パックマン, Pakku Man, Puckman, ...)  is certainly one of the most iconic videogames in history, and thus it deserves to be well documented and understood in detail.
+Pacman (or Pac Man, Pac-man, パックマン, Pakku Man, Puckman, ...)  is certainly one of the most iconic video games in history, and thus it deserves to be well documented and understood in detail.
 
 I'm completing this guide in my spare time, but please make a Pull Request in Github if you'd like to contribute!
 
@@ -32,9 +32,9 @@ Pins C, 3, D, and 4 take 7 VAC, which is rectified with diodes D7 and D8 to obta
 
 Pins 1, B, and 2 are the center tap of the transformer, referenced to ground. Pins 21, Z, and 22 are 12 VCT, also referenced to ground.
 
-Pins W, 19, X, and 20 take 12 V AC as input. This signal is rectified with diodes D3 and D4, and stabilied with capacitor C29. The schematic indicates that after the diodes there'a 16 VCD voltage, although if the input voltage is 12 V AC, one would expect about 12 - 0.6 = 11.4 V DC, not 16 VDC. In any case, this is not importante since this tension is to power up the audio amplified at 11A, but it can work within voltages between 6 and 24 V. These 16 or 12 VDC are the input of the IR1 chip (78GU1C), a voltage regulator.
+Pins W, 19, X, and 20 take 12 V AC as input. This signal is rectified with diodes D3 and D4, and stabilized with capacitor C29. The schematic indicates that after the diodes there'a 16 VCD voltage, although if the input voltage is 12 V AC, one would expect about 12 - 0.6 = 11.4 V DC, not 16 VDC. In any case, this is not importante since this tension is to power up the audio amplified at 11A, but it can work within voltages between 6 and 24 V. These 16 or 12 VDC are the input of the IR1 chip (78GU1C), a voltage regulator.
 
-IR1 is designed to output 5V DC at its output sense pin 1. It increases or decreases the current through BJT D44VM4 with its output pin 2. The role of resistor R53 is to share the load's current with the BJT,  [probably to avoid requiring a larger heatsink](https://electronics.stackexchange.com/questions/458315/can-someone-explain-the-purpose-of-r53-in-this-old-linear-power-supply-circuit). The zener diode D9 is a protection to limit to 6.2 V the voltage in the 5 V rail.
+IR1 is designed to output 5V DC at its output sense pin 1. It increases or decreases the current through BJT D44VM4 with its output pin 2. The role of resistor R53 is to share the load's current with the BJT,  [probably to avoid requiring a larger heat sink](https://electronics.stackexchange.com/questions/458315/can-someone-explain-the-purpose-of-r53-in-this-old-linear-power-supply-circuit). The Zener diode D9 is a protection to limit to 6.2 V the voltage in the 5 V rail.
 
 # Timing
 
@@ -66,7 +66,7 @@ The output is thus 0, 0, 1, and therefore the input frequency is divided by thre
 The oscillator produces a square signal of 18.432 MHz, so the master clock ends up with a frequency of 6.144 MHz. In the schematic it's approximated as 6 Mhz.
 
 ## Clock divisions
-The 6 MHz clock signal is decomposed in a series of horizonal (H) and vertical (V) divisions, using for each the same structure made by a frequency dividir with a D flip flop (74LS74) and two counters (74LS161). For the H divisions the input is the 6 MHz clock signal, whereas for the V divisions it's the HSYNC signal.
+The 6 MHz clock signal is decomposed in a series of horizontal (H) and vertical (V) divisions, using for each the same structure made by a frequency divider with a D flip flop (74LS74) and two counters (74LS161). For the H divisions the input is the 6 MHz clock signal, whereas for the V divisions it's the HSYNC signal.
 
 <p align="center"><img src="images/master_clock/divisions.png" alt="Master clock divisions"/></p>
 
@@ -81,7 +81,7 @@ Then, the notation iH means dividing the frequency of the working clock by i. 1H
 
 Two important signals for the video generation are obtained from the frequency divisions: the horizontal blanking (H BLANK), the vertical blanking (V BLANK), and the composite sync (CMPSYNC).
 
-H BLANK is generated using the D flip flop at 3N. Its D input is H whenever H64=L or H32=L. This takes 64+32=96 cycles of the working clock, after 256H activates. Given that each cycle takes 1/3 us, the H BLANK cycle will be 96/3 = 32 us. Since we're only interested in half of the cycle (the time it stays H), finally we have that H BLANK is 32/2 = 16 us, aprox. If we'd need to exact timing, we should consider the exact frequency of the master clock: 96 / (18.432 / 3) = 15.625 us.
+H BLANK is generated using the D flip flop at 3N. Its D input is H whenever H64=L or H32=L. This takes 64+32=96 cycles of the working clock, after 256H activates. Given that each cycle takes 1/3 us, the H BLANK cycle will be 96/3 = 32 us. Since we're only interested in half of the cycle (the time it stays H), finally we have that H BLANK is 32/2 = 16 us, approximately. If we'd need to exact timing, we should consider the exact frequency of the master clock: 96 / (18.432 / 3) = 15.625 us.
 
 
 **[ToDo]: document also V BLANK, CMPSYNC, V SYNC, AND H SYNC.**
