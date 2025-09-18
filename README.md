@@ -164,6 +164,13 @@ This means that we also need that AB14 is active. This address line goes to deco
 
 To summarize, any write to memory address x1x1xxxx11xxxxxx (including 0101000011000000 = 0x50C0) will be noticed by the watchdog and prevent the machine from resetting.
 
+# Buses
+The system has different buses, depending on the type of data they transport.
+
+* **VH bus**: it contains the horizontal (H1, H2, H4, ...) and vertical divisions (V1, V2, V4, ...) of the working clock.
+* **DB bus**: it contains user inputs (activated with the signals /IN0 and /IN1), the DIP switches settings (activated with signal /DIPSW), the Z80 program data, and the VRAM data from chips 4N-4M
+* **AB bus**: it contains the addresses AB0, ..., AB11. They shared along most of the components of the system, given that  the access to the different devices is memory mapped.
+
 # Video RAM
 The video RAM (VRAM) is made by 6 chips: 4N, 4K, 4P, 4L, 4R, and 4M.
 In general, in the bus only the address bit A11, ..., A0 are present.  The other bits A14, A13, and A12 are used to activate or inhibit different parts of the hardware. A15 is not used whatsoever.
@@ -223,18 +230,7 @@ Pacman is made of several ROMs.
 * Four ROMs 5E, 5H, 5F, and 5J below
 * PROMs 1M, 3M, 4A, and 7F
 
-
-The ROMs below contain:
-
-|Position|Function|
-|-|-|
-|5E|Tiles|
-|5H|Tiles|
-||||
-|5F|Sprites|
-|5J|Sprites|
-
-Again, the board admits two 2732 ROMs at 5E and 5F, or four 2716 chips at 5E, 5H, 5F, and 5J.
+The board admits using 2732 ROMs (for example, at 5E and 5F), or pairs of two 2716 chips (as in 5E, 5H, 5F, and 5J).
 
 The PROMs are:
 
@@ -246,7 +242,7 @@ The PROMs are:
 |4A|Color code|
 |7F|Color palette|
 
-## Z80 code ROMS
+## Z80 code EPROMS
 The ROMs on the top of the schematic contain the main Z80 code of the game, in these adddresses:
 
 |Position|Function|
@@ -319,6 +315,27 @@ From 0x3000 to 0x3FFF.
 And as expected, the ROMs only activate when the CPU is _reading_ their addresses, with /RD=0.
 
 Finally, custom chip 6D takes care of putting their output data into the data bus (DB7, ..., DB0).
+
+
+## Tiles and sprite EPROMS
+Below the Z80 code ROMs, we can see in the schematic the ROMs 5E, 5H, 5F, and 5J.
+
+<p align="center"><img src="images/ROM/5E_to_5J.png" alt="Z80 code roms 6E to 6Pr"/></p>
+
+They contain the information to define the tiles and the sprites. The two pairs of ROMs are activated one at the time.
+The same as the Z80 ROMs, here the PCB also allows to use 2732 or 2716 ROM chips.
+
+|Position|Function|
+|-|-|
+|5E|Tiles|
+|5H|Tiles|
+||||
+|5F|Sprites|
+|5J|Sprites|
+
+Again there are two activation CE signals. The one in their pin 18 is DB7 from the DB bus, which is used by the inverter at 4F to choose between the two pairs of ROM: the first half of the tile and sprite data (5E, 5F), or the second half (5H, 5J). The second CE (pin 20) comes from the output of the decoder at 5L.
+
+
 
 
 
