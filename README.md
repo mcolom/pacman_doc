@@ -333,7 +333,7 @@ The same as the Z80 ROMs, here the PCB also allows to use 2732 or 2716 ROM chips
 |5F|Sprites|
 |5J|Sprites|
 
-Again there are two activation CE signals. The one in their pin 18 is DB7 from the DB bus, which is used by the inverter at 4F to choose between the two pairs of ROM: the first half of the tile and sprite data (5E, 5F), or the second half (5H, 5J). The second CE (pin 20) comes from the output of the decoder at 5L.
+Again there are two activation CE signals. The one in their pin 18 is DB7 from the DB bus, which is used by the inverter at 4F to choose between which part of the EPROMs is read: the first half of the tile and sprite data (5E, 5F), or the second half (5H, 5J). The second CE (pin 20) comes from the output of the decoder at 5L.
 
 
 
