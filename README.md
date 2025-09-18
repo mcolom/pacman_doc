@@ -223,7 +223,31 @@ Pacman is made of several ROMs.
 * Four ROMs 5E, 5H, 5F, and 5J below
 * PROMs 1M, 3M, 4A, and 7F
 
-The ROMs on the top have the following functions:
+
+The ROMs below contain:
+
+|Position|Function|
+|-|-|
+|5E|Tiles|
+|5H|Tiles|
+||||
+|5F|Sprites|
+|5J|Sprites|
+
+Again, the board admits two 2732 ROMs at 5E and 5F, or four 2716 chips at 5E, 5H, 5F, and 5J.
+
+The PROMs are:
+
+|Position|Function|
+|-|-|
+|1M|Audio|
+|3M|Audio|
+||||
+|4A|Color code|
+|7F|Color palette|
+
+## Z80 code ROMS
+The ROMs on the top of the schematic contain the main Z80 code of the game, in these adddresses:
 
 |Position|Function|
 |-|-|
@@ -239,21 +263,61 @@ The ROMs on the top have the following functions:
 |6J|Z80 code, 0x3000–0x3FFF|
 |6P|Z80 code, 0x3000–0x3FFF|
 
+The board can admits 4 Kb 2732 ROMs at 6E, 6F, 6H and 6J, or divide each 2716 into two 2 Kb 2716 chips.
 
-The board can admits 4 Kb 2532 ROMs at 6E, 6F, 6H and 6J, or divide each 2532 into two 2 Kb 2716 chips.
+In this section we'll assume that the board is using eight 2732 chips, as shown in the schematic.
 
-The ROMs below contain:
+<p align="center"><img src="images/ROM/6E_to_6P.png" alt="Z80 code roms 6E to 6Pr"/></p>
 
-|Position|Function|
-|-|-|
-|5E|Tiles|
-|5H|Tiles|
-||||
-|5F|Sprites|
-|5J|Sprites|
+The have to CE signals. Let's focus first on the one at pin 18. It takes line address A11 in half of the chips, and /A11 in the other half. This is because it's splitting each of the 2732 ROMs into two 2716, and it uses address line A11 for the division. When A11=1, it'll chose 6E, 6F, 6H, and 6J. When A11=0, it'll choose 6K, 6M, 6N, and 6P. The NOR gate at 7L simply acts as an inverter for A11 to obtain /A11.
 
-Again, the board admits two 2532 ROMs at 5E and 5F, or four 2716 chips at 5E, 5H, 5F, and 5J.
+The second CE signal comes from the decimal decoder 7N. It´ ll activate one pair of ROM chips at a time: (6E, 6K), (6F, 6M), (6H, 6N), or (6J, 6P).
+Which pair the decoder activates depends on:
 
+* Address lines A12 and A13
+* the /RD signal
+* the output pin 6 of the decoder at 7M
+
+The decoder 7M will activate its output at pin 6 when /RFSH=H and A14=L.
+
+Let's see now under which other conditions each of the ROM pairs activates, and which is the associated address range.
+
+* **6E, 6K**: we need that the decoder 7N activates its 0, which happens with A14=0, /RD=0, A13=0, A12=0
+
+|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|0|x|x|x|x|x|x|x|x|x|x|x|x|
+
+From 0x0000 to 0x0FFF.
+
+* **6F, 6M**: we need that the decoder 7N activates its output 1, which happens when A14=0, /RD=0, A13=0, A12=1
+
+|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|1|x|x|x|x|x|x|x|x|x|x|x|x|
+
+From 0x1000 to 0x1FFF.
+
+* **6H, 6N**: we need that the decoder 7N activates its output 2, which happens when A14=0, /RD=0, A13=1, A12=0
+
+|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|1|0|x|x|x|x|x|x|x|x|x|x|x|x|
+
+From 0x2000 to 0x2FFF.
+
+
+* **6J, 6P**: we need that the decoder 7N activates its output 3, which happens when A14=0, /RD=0, A13=1, A12=1
+
+|AB13|AB12|AB11|AB10|AB9|AB8|AB7|AB6|AB5|AB4|AB3|AB2|AB1|AB0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|1|1|x|x|x|x|x|x|x|x|x|x|x|x|
+
+From 0x3000 to 0x3FFF.
+
+And as expected, the ROMs only activate when the CPU is _reading_ their addresses, with /RD=0.
+
+Finally, custom chip 6D takes care of putting their output data in the data bus (DB7, ..., DB0).
 
 
 
