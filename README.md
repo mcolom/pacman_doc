@@ -216,6 +216,46 @@ The movement of data from and to the bus it mediated by the transceiver at 4H.
 <p align="center"><img src="images/VRAM/transceiver.png" alt="VRAM transceiver"/></p>
 The R/W signal controls the direction (read from the VRAM to the bus, or write to the VRAM from the bus). It's activated according to the /VRAM signal.
 
+# ROMs
+Pacman is made of several ROMs.
+
+* There's one set 6E, 6K, 6F, 6M, 6H, 6N, 6J, and 6P at the top of the schematic
+* Four ROMs 5E, 5H, 5F, and 5J below
+* PROMs 1M, 3M, 4A, and 7F
+
+The ROMs on the top have the following functions:
+
+|Position|Function|
+|-|-|
+|6E|Z80 code, 0x0000–0x0FFF|
+|6K|Z80 code, 0x0000–0x0FFF|
+|||
+|6F|Z80 code, 0x1000–0x1FFF|
+|6M|Z80 code, 0x1000–0x1FFF|
+|||
+|6H|Z80 code, 0x2000–0x2FFF|
+|6N|Z80 code, 0x2000–0x2FFF|
+|||
+|6J|Z80 code, 0x3000–0x3FFF|
+|6P|Z80 code, 0x3000–0x3FFF|
+
+
+The board can admits 4 Kb 2532 ROMs at 6E, 6F, 6H and 6J, or divide each 2532 into two 2 Kb 2716 chips.
+
+The ROMs below contain:
+
+|Position|Function|
+|-|-|
+|5E|Tiles|
+|5H|Tiles|
+||||
+|5F|Sprites|
+|5J|Sprites|
+
+Again, the board admits two 2532 ROMs at 5E and 5F, or four 2716 chips at 5E, 5H, 5F, and 5J.
+
+
+
 
 # Some references
 Here you are some references to pages and documents with relevant information.
