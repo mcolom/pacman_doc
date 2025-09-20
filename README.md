@@ -3,7 +3,7 @@
 
 <p align="center"><img src="images/cabinet.jpg" width="400" alt="Pacman arcade cabinet"/></p>
 
-This document is a description of the Pacman arcade game's hardware, reversed-engineered from the schematic.
+This document is a description of the Pacman arcade game's hardware, reverse-engineered from the schematic.
 Although much information about the software do exist, as far as I know there isn't a comprehensive guide to explain how its hardware works in detail. You can [get the full schematic here](assets/pacman_logic_board_b_schematic.jpg), thanks to user GaryMcT from the forum at [Arcade Museum](arcade-museum.com).
 
 Pacman (or Pac Man, Pac-man, パックマン, Pakku Man, Puckman, ...)  is certainly one of the most iconic video games in history, and thus it deserves to be well documented and understood in detail.
@@ -333,9 +333,19 @@ The same as the Z80 ROMs, here the PCB also allows to use 2732 or 2716 ROM chips
 |5F|Sprites|
 |5J|Sprites|
 
-Again there are two activation CE signals. The one in their pin 18 is DB7 from the DB bus, which is used by the inverter at 4F to choose between which part of the EPROMs is read: the first half of the tile and sprite data (5E, 5F), or the second half (5H, 5J). The second CE (pin 20) comes from the output of the decoder at 5L.
+### Activation
 
+Again, there are two activation CE signals. The one in their pin 18 is DB7 from the DB bus, which is used by the inverter at 4F to choose between which part of the EPROMs is read: the first half of the tile and sprite data (5E, 5F), or the second half (5H, 5J). We can see this bit as part of the addressing, in fact. The information from the data bus that goes into the custom IC 6D is treated as addresses (they're referred as "CA" in the schematic, probably "Character Address") when it gets out of the D flip flops at 4D. This is because the indices of the tiles and sprites are used as the address of the patterns of the tiles and sprites.
 
+The second activation (pin 20) is used to select when tiles and sprites. When the decoder 5L outputs a 1 (B=L, A=H), it'll select 5E and 5H (tiles). When it output a 3 (A=B=H), the sprites will be selected.
+
+<p align="center"><img src="images/ROM/decoder_5L.png" alt="Decoder 5L"/></p>
+
+Its input A is connected to clock division 2H, and the input B transports HBLANK after passing through the D flip flops at 1H (clocked at 4H). So, basically the system is alternating between tiles and sprites, for drawing the screen, at a certain rate given by division of the working clock and HBLANK.
+
+Interestingly, we can observe two jumpers in the board for the input A. It can choose between HBLANK or ground. If we change the normal configuration and we set B=L, it'll only show the background and the sprites would not be drawn. Probably the idea is to accelerate the background updates in games that don't use any sprites.
+
+## Addressing
 
 
 
